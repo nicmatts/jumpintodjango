@@ -1,11 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Question detail</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %} Question detail {% endblock %}
+
+{% block content %}
 	<h2>{{question.subject}}?</h2>
-	{{question.publication_date|}}
-</body>
-</html>
+	<p>Published: {{question.publication_date}}</p>
+	<p> {% if question.description %}
+			{{question.description}}
+		{% else %}
+			No description provided.
+		{% endif %}
+	</p>
+
+	<h3>Answers</h3>
+	<ul>
+	{% for answer in question.answer_set.all %}
+		<li>{{answer.content|safe}}</li>
+	{% empty %}
+		<li>No answers yet.</li>
+	{% endfor %}
+	</ul>
+{% endblock content %}
