@@ -6,7 +6,7 @@
 </head>
 <body>
 	{% for question in questions %}
-		<a href="{% url 'question_detail' question.id%}">{{question.subject}} ?</a><br>
+		<a href="{% url 'question_detail' question.id %}">{{question.subject}}</a><br>
 	{% endfor %}
 </body>
 </html>
