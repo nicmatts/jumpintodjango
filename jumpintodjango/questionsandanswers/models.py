@@ -11,6 +11,10 @@ class Question(models.Model):
 
 	def published_today(self):
 		return self.publication_date.date()==timezone.now().date()
+	
+	published_today.boolean = True
+	published_today.short_description = 'Asked today?'
+
 
 class Answer(models.Model):
 	question = models.ForeignKey(Question)
