@@ -1,5 +1,7 @@
 from django import forms
+from questionsandanswers.models import Question
 
-class QuestionForm(forms.Form):
-	subject = forms.CharField(max_length=100, required=True)
-	description = forms.CharField(widget=forms.Textarea, required=True)
+class QuestionForm(forms.ModelForm):
+	class Meta:
+		model = Question
+		exclude = ('publication_date,')

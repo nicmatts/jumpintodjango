@@ -4,7 +4,7 @@ from django.utils import timezone
 class Question(models.Model): 
 	subject = models.CharField(max_length=200)
 	description = models.TextField()
-	publication_date = models.DateTimeField()
+	publication_date = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
 		return self.subject
