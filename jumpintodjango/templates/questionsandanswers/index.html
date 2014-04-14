@@ -3,6 +3,7 @@
 {% block title %} Questions {% endblock title %}
 
 {% block content %}
+	<p><a href="{% url 'question_create' %}">Create a question</a></p>
 	{% for question in questions %}
 		<a href="{% url 'question_detail' question.id %}">{{question.subject}}?</a><br>
 	{% endfor %}
