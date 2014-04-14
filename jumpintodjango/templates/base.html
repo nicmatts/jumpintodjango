@@ -6,8 +6,16 @@
 </head>
 <body>
 	<div id="header">
-		<h1><a href="http://localhost:8000/questions/">Jump into Django</a></h1>
+		{% if user.is_authenticated %}
+			<p>Welcome, <strong>{{ user.username }}</strong> | <a href="{% url 'logout' %}">Log out</a></p>
+		{% else %}
+			<p>Welcome, guest.  Please <a href="{% url 'login' %}">log in</a></p>
+		{% endif %}
+		<h1>Jumping into Django</h1>
 	</div>
+	<nav>
+		<p><a href="{% url 'homepage'%}">Home</a> | <a href="{% url 'questions'%}">Questions</a></p>
+	</nav>
 	<div id="content">
 		{% block content %}
 		{% endblock content %}

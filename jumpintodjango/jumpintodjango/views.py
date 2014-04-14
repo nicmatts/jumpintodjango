@@ -1,6 +1,6 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 
 from jumpintodjango.forms import LoginForm
 
@@ -21,3 +21,10 @@ def login_page(request):
 	else:
 		form = LoginForm()
 	return render_to_response('login.html', {'message': message, 'form': form}, context_instance=RequestContext(request))
+
+def homepage(request):
+	return render_to_response('homepage.html', context_instance=RequestContext(request))
+
+def logout_view(request):
+	logout(request)
+	return redirect('homepage')
