@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^questions/$', 'questionsandanswers.views.index'),
+    url(r'^login/$', 'jumpintodjango.views.login_page', name='login'),
     url(r'^questions/(?P<question_id>\d+)/$', 'questionsandanswers.views.question_detail', name='question_detail'),
     url(r'^questions/create/$', 'questionsandanswers.views.question_create', name='question_create'),
     url(r'^questions/edit/(?P<question_id>\d+)$', 'questionsandanswers.views.question_edit', name='question_edit'),
