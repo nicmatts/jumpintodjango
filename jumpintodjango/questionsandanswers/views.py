@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from questionsandanswers.models import Question
 from questionsandanswers.forms import QuestionForm
@@ -14,6 +15,7 @@ def question_detail(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
 	return render_to_response('questionsandanswers/question_detail.html', {'question': question})
 
+@login_required
 def question_create(request):
 	if request.method == 'POST':
 		form = QuestionForm(request.POST)
@@ -24,6 +26,7 @@ def question_create(request):
 		form = QuestionForm()
 	return render_to_response('questionsandanswers/question_create.html', {'form': form}, context_instance=RequestContext(request))
 
+@login_required
 def question_edit(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
 	if request.method=='POST':
